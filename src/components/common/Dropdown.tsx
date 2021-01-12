@@ -1,27 +1,35 @@
 import React, { useEffect } from 'react';
 import useOption from '../../hooks/useOption';
 
-interface DropdownItem {
+interface DropdownItemType {
+  id: number;
   name: string;
-  value: number;
+  delivery_price: number;
 }
 
-interface DropdownProps {
-  items: DropdownItem[];
-  setValue: (value: number) => void;
+export interface DropdownProps {
+  dropdownItems: DropdownItemType[];
+  setDropdownValue: (value: number) => void;
 }
 
-const Dropdown = ({ items, setValue }: DropdownProps) => {
+const Dropdown = ({ dropdownItems, setDropdownValue }: DropdownProps) => {
   const { option, changeOption } = useOption();
 
   useEffect(() => {
-    setValue(option);
-  }, [option, setValue]);
+    if (option) {
+      setDropdownValue(option);
+    }
+  }, [option, setDropdownValue]);
 
   return (
-    <select onChange={changeOption}>
-      {items.map((item) => (
-        <option value={item.value}>{item.name}</option>
+    <select onChange={changeOption} defaultValue={0}>
+      <option value={0} disabled>
+        선택해주세요.
+      </option>
+      {dropdownItems.map((item) => (
+        <option value={item.id}>
+          {item.name} ({item.delivery_price.toLocaleString('ko-KR')}원)
+        </option>
       ))}
     </select>
   );
