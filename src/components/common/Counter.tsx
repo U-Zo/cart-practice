@@ -3,13 +3,13 @@ import useCount from '../../hooks/useCount';
 
 interface CounterProps {
   id: number;
-  current_count: number;
+  currentCount: number;
   stock: number;
   setItemCount: (id: number, count: number) => void;
 }
 
-const Counter = ({ id, current_count, stock, setItemCount }: CounterProps) => {
-  const { count, increaseCount, decreaseCount } = useCount(current_count);
+const Counter = ({ id, currentCount, stock, setItemCount }: CounterProps) => {
+  const { count, increaseCount, decreaseCount } = useCount(currentCount);
 
   const onIncreaseCount = () => {
     if (count < stock) {
@@ -24,16 +24,18 @@ const Counter = ({ id, current_count, stock, setItemCount }: CounterProps) => {
   };
 
   useEffect(() => {
-    setItemCount(id, count);
-  }, [count, id, setItemCount]);
+    if (count !== currentCount) {
+      setItemCount(id, count);
+    }
+  }, [count, currentCount, id, setItemCount]);
 
   return (
     <div>
-      <button type="button" onClick={onIncreaseCount}>
+      <button type="button" onClick={onDecreaseCount}>
         -
       </button>
       <span>{count}</span>
-      <button type="button" onClick={onDecreaseCount}>
+      <button type="button" onClick={onIncreaseCount}>
         +
       </button>
     </div>
