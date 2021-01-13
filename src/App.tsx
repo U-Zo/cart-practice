@@ -1,9 +1,13 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import CartContainer from './containers/cart/CartContainer';
 
 const App = () => {
   return (
     <>
-      <div>App</div>
+      <Switch>
+        <Route component={CartContainer} path="/cart" exact />
+      </Switch>
     </>
   );
 };
