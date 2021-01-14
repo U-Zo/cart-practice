@@ -33,7 +33,7 @@ const Dropdown = ({ dropdownItems, setDropdownValue }: DropdownProps) => {
         선택해주세요.
       </option>
       {dropdownItems.map((item) => (
-        <option value={item.id}>
+        <option key={item.id} value={item.id}>
           {item.name} ({item.delivery_price.toLocaleString('ko-KR')}원)
         </option>
       ))}

@@ -207,6 +207,7 @@ const Cart = ({
           <div>
             {cartList.map((item) => (
               <CartItem
+                key={item.id}
                 id={item.id}
                 current_count={item.current_count}
                 image_url={item.image_url}
