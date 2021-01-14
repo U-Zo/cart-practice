@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import useCount from '../../hooks/useCount';
 
 interface CounterProps {
@@ -7,6 +8,14 @@ interface CounterProps {
   stock: number;
   setItemCount: (id: number, count: number) => void;
 }
+
+const CounterButton = styled.button`
+  border: none;
+  background-color: inherit;
+  padding: 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+`;
 
 const Counter = ({ id, currentCount, stock, setItemCount }: CounterProps) => {
   const { count, increaseCount, decreaseCount } = useCount(currentCount);
@@ -31,13 +40,13 @@ const Counter = ({ id, currentCount, stock, setItemCount }: CounterProps) => {
 
   return (
     <div>
-      <button type="button" onClick={onDecreaseCount}>
+      <CounterButton type="button" onClick={onDecreaseCount}>
         -
-      </button>
+      </CounterButton>
       <span>{count}</span>
-      <button type="button" onClick={onIncreaseCount}>
+      <CounterButton type="button" onClick={onIncreaseCount}>
         +
-      </button>
+      </CounterButton>
     </div>
   );
 };

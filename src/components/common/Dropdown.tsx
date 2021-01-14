@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import useOption from '../../hooks/useOption';
 
 interface DropdownItemType {
@@ -12,6 +13,11 @@ export interface DropdownProps {
   setDropdownValue: (value: number) => void;
 }
 
+const DropdownSelect = styled.select`
+  padding: 6px;
+  font-size: 1rem;
+`;
+
 const Dropdown = ({ dropdownItems, setDropdownValue }: DropdownProps) => {
   const { option, changeOption } = useOption();
 
@@ -22,8 +28,8 @@ const Dropdown = ({ dropdownItems, setDropdownValue }: DropdownProps) => {
   }, [option, setDropdownValue]);
 
   return (
-    <select onChange={changeOption} defaultValue={0}>
-      <option value={0} disabled>
+    <DropdownSelect onChange={changeOption} defaultValue={0}>
+      <option value={0} hidden disabled>
         선택해주세요.
       </option>
       {dropdownItems.map((item) => (
@@ -31,7 +37,7 @@ const Dropdown = ({ dropdownItems, setDropdownValue }: DropdownProps) => {
           {item.name} ({item.delivery_price.toLocaleString('ko-KR')}원)
         </option>
       ))}
-    </select>
+    </DropdownSelect>
   );
 };
 
