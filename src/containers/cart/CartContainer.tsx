@@ -3,7 +3,7 @@ import Cart from '../../components/cart/Cart';
 import { cartLists, deliveryTypes } from '../../data';
 
 const CartContainer = () => {
-  const [address, setAddress] = useState('서울시 강남구 도산대로 174 7층');
+  const [address, setAddress] = useState('');
   const [deliveryOption, setDeliveryOption] = useState(0);
   const [cartList, setCartList] = useState(
     cartLists.map((cartItem) => ({ active: false, ...cartItem })),
